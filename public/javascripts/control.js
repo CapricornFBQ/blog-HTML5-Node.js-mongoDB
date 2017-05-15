@@ -40,7 +40,6 @@ $(Document).ready(function() {
                 history.pushState(state,document.title,"/");
             });
         });
-
     })
     //logo=============================================================================
     $("#logo").click(function() {
@@ -555,7 +554,48 @@ $(Document).ready(function() {
             });
         })
     })
-
+    //record===========================================================================
+    $("#record").click(function() {
+        $('.nabarNoStyle').each(function() {
+            $(this).removeClass('active');
+        })
+        $(this).parents("li").addClass('active');
+        $(".bodyPart").children().fadeOut(300, function() {
+            $.get("/record",function(data) {
+                $(".bodyPart").children().remove();
+                $(".bodyPart").hide();
+                $(".bodyPart").html(data);
+                $(".bodyPart").show().children().addClass('animated zoomIn').show();
+                var state = {
+                    url:"/record"
+                }
+                history.pushState(state,document.title,"/experience");
+            });
+        });
+    })
+    //thank===========================================================================
+    $("#thanks").click(function() {
+        $('.nabarNoStyle').each(function() {
+            $(this).removeClass('active');
+        })
+        $(this).parents("li").addClass('active');
+        $(".bodyPart").children().fadeOut(300, function() {
+            $.get("/thanks",function(data) {
+                $(".bodyPart").children().remove();
+                $(".bodyPart").hide();
+                $(".bodyPart").html(data);
+                //根据视窗高度自动使文字高度在视窗居中；
+                var height = $(window).height()/3 + "px";
+                $('#myCarousel').css("margin-top",height);
+                $(".bodyPart").show();
+                $('.thankText').addClass('animated zoomIn').show();
+                var state = {
+                    url:"/thanks"
+                }
+                history.pushState(state,document.title,"/myDear");
+            });
+        });
+    })
 
 
 

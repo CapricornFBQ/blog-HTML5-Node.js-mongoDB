@@ -1,50 +1,47 @@
-<%- include header %>
+<div class="record">
+    <div id="snakeGame" style="position:fixed; margin-top:-65px">
+        <div style="margin-top:150px;">
+            <p>
+                这一页本来想写个流水账的，但是感觉意义不大，放个简单的小游戏吧~~~
+            </p>
+        </div>
+        <div>
+            <p align="center" style="font-size:15px;">贪吃蛇得分：<span id="score"></span></p>
+        </div>
+        <div style="margin:0; padding:0; width:300px;height:300px;border:1px solid red">
+            <canvas id="gameBox" width="300px" height="300px"></canvas>
+        </div>
+        <div style="margin-top:15px; margin-left:0;">
+            <button type="button" onclick=Begin();><span style="color:#111">开始游戏</span></button>
+        </div>
+        <div style="position:fixed;width:50px; height:50px; margin-top:-35px; margin-left:120px;">
+            <div style="margin-top:25px"><a class="glyphicon glyphicon-arrow-left" style="font-size:25px;" onclick=moveSnake(1)></a></div>
+            <div style="margin-top:-52px; margin-left:25px"><a class="glyphicon glyphicon-arrow-up" style="font-size:25px;" onclick=moveSnake(2)></a></div>
+            <div style="margin-left:50px; margin-top:-7px"><a class="glyphicon glyphicon-arrow-right" style="font-size:25px;" onclick=moveSnake(-1)></a></div>
+            <div style="margin-left:25px;"><a class="glyphicon glyphicon-arrow-down" style="font-size:25px;" onclick=moveSnake(-2)></a></div>
+        </div>
+        <script type="text/javascript">
+        //    1.画可见的格子
+        //        横向30格子 竖着30格子 每个格子边长15 450*450
+        //        第一行绘制一条蛇 5节身体
+        //        食物放置在最中心的位置 默认食物
+        //    2.让蛇东起来
+        //        蛇头动跟着键盘方向键  上下左右移动 键盘监听事件
+        //        蛇身跟着蛇头动
+        //            算法：
+        //                1.产生新的蛇头
+        //                2.新的蛇身 （不要蛇尾
+        //                3.新的蛇头添加到舍身
+        //    3.吃食物
+        //        1.碰撞算法
+        //        2.增加蛇的长度，添加蛇尾
+        //        3.将食物移除，产生新的随机食物
+        //    4.蛇自己动
+        //    5.计算分数
 
-       
-		<!--
-			1.画可见的格子
-				横向30格子 竖着30格子 每个格子边长15 450*450
-				第一行绘制一条蛇 5节身体
-				食物放置在最中心的位置 默认食物
-			2.让蛇东起来
-				蛇头动跟着键盘方向键  上下左右移动 键盘监听事件
-				蛇身跟着蛇头动
-					算法：
-						1.产生新的蛇头
-						2.新的蛇身 （不要蛇尾
-						3.新的蛇头添加到舍身
-			3.吃食物
-				1.碰撞算法
-				2.增加蛇的长度，添加蛇尾
-				3.将食物移除，产生新的随机食物
-			4.蛇自己动
-			5.计算分数
-
-		-->
-		<div style="position:fixed; margin-top:-65px">
-		    <div style="margin-top:150px">
-                <p align="center" style="font-size:15px;">贪吃蛇得分：<span id="score"></span></p>
-            </div>
-
-            <div style="margin:0 auto; padding:0; width:300px;height:300px;border:1px solid red">
-                <canvas id="gameBox" width="300px" height="300px"></canvas>
-            </div>
-            <div style="margin-top:15px; margin-left:0;">
-                <button type="button" onclick=Begin();><span style="color:#111">开始游戏</span></button>
-            </div>
-            <div style="position:fixed;width:50px; height:50px; margin-top:-35px; margin-left:120px;">
-                <div style="margin-top:25px"><a class="glyphicon glyphicon-arrow-left" style="font-size:25px;" onclick=moveSnake(1)></a></div>
-                <div style="margin-top:-52px; margin-left:25px"><a class="glyphicon glyphicon-arrow-up" style="font-size:25px;" onclick=moveSnake(2)></a></div>
-                <div style="margin-left:50px; margin-top:-7px"><a class="glyphicon glyphicon-arrow-right" style="font-size:25px;" onclick=moveSnake(-1)></a></div>
-                <div style="margin-left:25px;"><a class="glyphicon glyphicon-arrow-down" style="font-size:25px;" onclick=moveSnake(-2)></a></div>
-            </div>
-		</div>
-		
-		<script type="text/javascript">
-			
             var canvas = document.getElementById("gameBox");
             var ctx = canvas.getContext("2d");
-            
+
             var snake = [];
             var width = 15;
             var len = 5;
@@ -54,7 +51,7 @@
             var clickCount = 0;  //用于对点击次数进行计数；以控制游戏的开始
             var v = 420; //贪吃蛇的速度
             v -= 3*snake.length
-            
+
             //左1 右-1 上2 下-2
             function cell(x, y, f) {
                 this.x = x;
@@ -62,21 +59,21 @@
                 this.f = f;
                 return this;
             }
-            
+
             function Food(x, y) {
                 this.x = x;
                 this.y = y;
                 return this;
             }
-            
-            
+
+
             //初始化蛇
             for (var i=0; i<len; i++) {
                 snake[i] = new cell(i, 0, -1);
             }
             //初始化食物
             food = new Food(10, 10);
-            
+
             //重新绘制蛇的身体
             function draw() {
                 //重绘
@@ -192,7 +189,7 @@
                 checkDeath();
                 draw();
             }
-//            draw();
+        //            draw();
 
             function checkDeath() {
                 var head = snake[snake.length-1];
@@ -215,7 +212,7 @@
                     moveClock();
                 }
             }
-            
+
             function moveClock() {
                 //放在函数里面把head封装起来
                 var head = snake[snake.length-1];
@@ -223,8 +220,8 @@
                 draw();
                 setTimeout('moveClock()', 400);
             }
-            
-		</script>
-		
 
-<%- include footer %>
+        </script>
+    </div>
+</div>
+
