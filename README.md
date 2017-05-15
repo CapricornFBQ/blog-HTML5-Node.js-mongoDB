@@ -1,5 +1,5 @@
 # blog-HTML5-Node.js-mongoDB
->一个使用了HTM5、Node.js、mongoDB数据的**单页面应用博客**
+>一个使用了HTM5、Node.js、mongoDB数据的**单页面博客应用**
 >
 >使用的技术如下：
 >
