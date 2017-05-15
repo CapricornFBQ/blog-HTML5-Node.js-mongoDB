@@ -1,0 +1,76 @@
+<%- include header %>
+<nav class="novel container">
+       <nav class="articleLocation">
+           <nav class="site-nav login">
+                <% if (user) { %>
+                  <span><a href="/head-portrait"><img src="<%= user.head %>" style="display:inline-block; width:25px; height:25px; box-shadow:0px 1px 4px #888; border-radius:50%;"></a></span>
+                  <span><%= user.name %></span>
+                  <span><a title="发表文章" href="/post" class="glyphicon glyphicon-cloud-upload">发表文章</a></span>
+                  <span> </span>
+                  <span><a title="退出" href="/logout" class="glyphicon glyphicon-log-out">退出</a></span>
+                <% } else { %>
+                  <span><a title="登录" href="/login" class="glyphicon glyphicon-log-in">登录</a></span>
+                  <span> </span>
+                  <span><a title="注册" href="/reg" class="glyphicon glyphicon-user">注册</a></span>
+                <% } %>
+                    <% if(success) { %>
+                    <div><%= success %></div>
+                    <% } %>
+                <% if (error) {%>
+                    <div><%= error %> </div>
+                    <% } %>
+             </nav>
+             <nav style="padding-top:15px;">
+                <h3><%= doc.title %></h3>
+                <img src="<%- doc.head %>" class="pull-left pictureLocation" style="display:inline-block; width:40px; height:40px; box-shadow:0px 1px 4px #888;;"/>
+                <p class="info">
+                    <a href="#" class="glyphicon glyphicon-user">:<%= doc.name %></a>
+                    <span>&nbsp;&nbsp;&nbsp;</span>
+                    <a href="#" class="glyphicon glyphicon-time">:<%= doc.time.minute%></a> 
+                </p>
+                <div id="article">
+                    <%- doc.post %>
+                </div>
+                <hr style="height:1px;border:none;border-top:1px dashed #996; width:95%" />
+                <% if (doc.comments.length > 0 || user) {%>
+                    <h4>留言：</h4>
+                <% } %>
+                <% doc.comments.forEach(function (comment, coding) { %>
+                        <img src="<%- comment.head %>" class="pull-left pictureLocation" style="display:inline-block; width:40px; height:40px; box-shadow:0px 1px 4px #888;"/>
+                    <p style="font-size:12px;"> 
+                        <a href="#" class="glyphicon glyphicon-user">:<%= comment.name %></a>
+                        <span>&nbsp;&nbsp;&nbsp;</span>
+                        <a href="#" class="glyphicon glyphicon-time">:<%= comment.time.minute%></a>
+                        <apan class="pull-right"><%- comment.floor %>楼</apan>
+                    </p>
+                    <div>
+                        <%- comment.comment%>
+                    </div>
+                    <div style="font-size:12px;">
+                        <% if(user) { %>
+                            <% if(user.name == comment.name) { %>
+                                <a href="/removeComment?id=<%= doc._id %>&floor=<%= comment.floor %>" class="glyphicon glyphicon-flash">删除</a>
+                            <% } %>
+                        <% } %>
+                    </div>
+                    <hr style="height:1px;border:none;border-top:1px dashed #996; width:100%" />
+                <% }) %>
+            </nav>
+            <% if (user) { %>
+                <nav>
+                <!-- form在post方法下 可以用 action="comment"来更改默认的url， 使其发送到指定的url -->
+                    <form method = "post" class="center-block">
+                        <textarea class="input-xxlarge form-control" rows="7" name="comment" type="" required="required" placeholder="您的观点"></textarea>
+                        <input class="btn pull-right" style="color:#444; margin-top:5px;" type="submit" value="留言" >
+                    </form>
+                </nav>
+            <% } %>
+     </nav>
+</nav>
+<%- include footer %>
+
+
+
+
+
+

@@ -1,0 +1,21 @@
+<div class="reg">
+    <div class="container inputReg">
+        <form class="form-signin" method="post">
+            <h2 class="form-signin-heading">注册</h2>
+            <label for="inputEmail" class="sr-only">用户名</label>
+            <input type="text" id="regInputName" class="form-control" placeholder="用户名" required="required" autofocus="" name="name">
+            <span class="glyphicon glyphicon-remove">用户名已存在，换一个吧O(∩_∩)O</span>
+            <span class="glyphicon glyphicon-remove">用户名长度应小于21个字符</span>
+            <label for="inputPassword" class="sr-only">密码</label>
+            <input type="password" id="regInputPassword" class="form-control" placeholder="密码" required="required" name="password">
+            <span class="glyphicon glyphicon-remove">密码长度需大于5位小于21位</span>
+            <label for="inputPasswordAgain" class="sr-only">确认密码</label>
+            <input type="password" id="regInputPasswordAgain" class="form-control" placeholder="确认密码" required="required" name="password-repeat">
+            <span class="glyphicon glyphicon-remove">两次输入密码不一致</span>
+            <label for="inputEmail" class="sr-only">邮箱</label>
+            <input type="email" id="regInputEmail" class="form-control" placeholder="邮箱email@example.com" required="required" email="email" name="email">
+            <span class="glyphicon glyphicon-remove">请输入正确的邮箱</span>
+            <input id="regSubmit" class="btn btn-lg btn-primary btn-block" type="button" value="注册">
+    </div> <!-- /container -->
+</div>
+

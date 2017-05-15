@@ -1,0 +1,70 @@
+<!Doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>范炳琦的官网</title>
+        <!--加入移动端适应-->
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+        <link rel="stylesheet" href="./css/bootstrap.min.css">
+        <link rel="stylesheet" href="./stylesheets/animate.min.css">
+        <link rel="stylesheet" href="./stylesheets/basic.css">
+        <script src="./javascripts/jquery.js"></script>
+        <script src="./js/bootstrap.min.js"></script>
+        <script src="./javascripts/control.js"></script>  
+        <script src="./javascripts/global.js"></script>   
+    </head>
+    <body>
+       <div class="bck-color">
+            <div class="container">
+                <nav class="header navbar navbar-default navbar-fixed-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a id="logo" href="javascript:void(0);" class="responsive" style="padding:0;margin-left:15px"><img src="./images/logopng.png"></a>
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="activecolor collapse navbar-collapse" id="navbar-collapse">
+                            <ul class="nav navbar-nav navbar-brand navbar-right">
+                                <li class="nabarNoStyle"><a id="index" href="javascript:void(0);"><span class="glyphicon glyphicon-home"></span>首页</a></li>
+                                <li class="nabarNoStyle"><a id="coding" href="javascript:void(0);"><span class="glyphicon glyphicon-pencil"></span>编程</a></li>
+                                <li class="nabarNoStyle"><a id="life" href="javascript:void(0);"><span class="glyphicon glyphicon-fire"></span>人生</a></li>
+                                <li class="nabarNoStyle"><a id="novel" href="javascript:void(0);"><span class="glyphicon glyphicon-book"></span>小说</a></li>
+                                <li class="nabarNoStyle"><a id="photo" href="javascript:void(0);"><span class="glyphicon glyphicon-eye-open"></span>图片</a></li>
+                                <li class="nabarNoStyle"><a id="record" href="javascript:void(0);"><span class="glyphicon glyphicon-edit"></span>记录</a></li>
+                                <li class="nabarNoStyle"><a id="thanks" href="javascript:void(0);"><span class="glyphicon glyphicon-heart"></span>感谢</a></li>
+                            </ul>
+                        </div>
+                        <script type="text/javascript">
+//                              此处本来想用这个遍历来给响应的li标签添加active类，后来重构之后，没有href标签，所以改为在点击事件中添加。
+//                            var nav = document.getElementById("navbar-collapse");
+//                            var links = nav.getElementsByTagName("li");
+//                            var lilen = nav.getElementsByTagName("a");
+//                            var currenturl = window.location.href;
+//                            var last = 0;
+//                            for (var i=0; i<links.length; i++)
+//                                {
+//                                    var linkurl = lilen[i].getAttribute("href");
+//                                    if (currenturl.indexOf(linkurl) != -1)
+//                                        {
+//                                            last = i;
+//                                            links[last].className = "active";
+//                                        }
+//
+//                                }
+                        </script>
+                    </div>
+                    </nav>
+                    <div class="bodyPart">
+                    </div>
+                    <!-- 返回页首的图标 -->
+                    <div id="comeBackTop">
+                        <a class="glyphicon glyphicon-hand-up" title="返回顶部" href="javascript:void(0);"></a>
+                    </div>
+                </div>
+  
+           </div>
+    </body>
+</html>

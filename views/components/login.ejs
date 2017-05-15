@@ -1,0 +1,19 @@
+<nav class="site-nav loginOption">
+    <% if (user) { %>
+      <span><a id="headPortrait" href="javascript:void(0);"><img src="<%= user.head %>" style="display:inline-block; width:25px; height:25px; box-shadow:0px 1px 3px #999; border-radius:50%;"></a></span>
+      <span><%= user.name %></span>
+      <span><a id="postArticle" title="发表文章" href="javascript:void(0);" class="glyphicon glyphicon-cloud-upload">发表文章</a></span>
+      <span> </span>
+      <span><a id="logout" title="退出" href="javascript:void(0);" class="glyphicon glyphicon-log-out">退出</a></span>
+    <% } else { %>
+      <span><a id="login" title="登录" href="javascript:void(0);" class="glyphicon glyphicon-log-in">登录</a></span>
+      <span>&nbsp;</span>
+      <span><a id="reg" title="注册" href="javascript:void(0);" class="glyphicon glyphicon-user">注册</a></span>
+    <% } %>
+        <% if(success) { %>
+        <div><%= success %></div>
+        <% } %>
+    <% if (error) {%>
+        <div><%= error %> </div>
+        <% } %>
+</nav>

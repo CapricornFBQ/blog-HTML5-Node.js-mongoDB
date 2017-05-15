@@ -1,0 +1,141 @@
+.bodyPart {
+margin: auto;
+}
+.photoAlbum {
+    padding-top:105px; 
+    margin: 0;
+}
+.photoThumbnail {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+/*
+    max-width:100%;
+    max-height:100%;
+*/
+}
+.photoThumbnail:hover {
+    cursor: Crosshair;
+}
+.photoThumbnailBox {
+    margin:5px 0; 
+}
+.closeIcon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.6);
+    cursor: pointer;
+    /*此处必须设置优先级，不然关闭按钮很容易就被覆盖掉*/
+    z-index:999999;
+}
+.pictureBox {
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+/*    overflow: hidden;*/
+    /*此处必须设置优先级，不然关闭按钮很容易就被覆盖掉*/
+    z-index:999998;
+}
+.theSingleLittlePhotoThumbnailBox {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+
+}
+/*图片默认状态*/
+.theSingleLittlePhotoThumbnail {
+    margin: 0;
+    padding: 0;
+    /*调整图片显示的透明度！！！！！！！！！！！！！！！！！！！！！！！！！！！*/
+    /*filter:alpha(opacity=50); -moz-opacity:0.8; -khtml-opacity: 0.8; opacity: 0.8;*/
+    /*调整图片亮度*/
+    -webkit-filter: brightness(0.6);
+    filter: brightness(0.6);
+}
+/*图片活跃状态时的类===================================================================*/
+.pictureThumbnailActive {
+    margin: 0;
+    padding: 0;
+    /*调整图片亮度*/
+    -webkit-filter: brightness(1);
+    filter: brightness(1);
+    text-align:center;
+}
+.theFooter {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    left: 0;
+    bottom: 3px;
+    display: none;
+}
+.pictureToolbar {
+    background-color: rgba(0,0,0,0.2)
+}
+.pictureToolbarbutton { 
+    display:inline-block;
+    color: antiquewhite;
+    /*强制不要换行！！！！！！！！！！！！！！！！！！！*/
+    white-space:nowrap;
+}
+.pictureViewer {
+    padding: 0;
+    margin: 0;
+}
+.thePicture {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+/*为了让图片可以随鼠标移动，她的位置必须脱离文档流！！！！！！此处为重点*/
+#thePicture {
+    position: absolute;
+}
+
+.pictureToolbarbutton {
+    cursor: pointer;
+}
+.AdjacentPage {
+    padding: 0;
+    text-align: center;
+    overflow: hidden;
+}
+.AdjacentPageTool {
+    padding: 0;
+    margin: 0 auto;
+    cursor: pointer;
+    color: antiquewhite;
+}
+.theBigPhotoThumbnailBox {
+    background-color: rgba(0, 0, 0, 0.4);
+    position:absolute;
+    bottom: 0;
+}
+.theSingleLittlePhotoThumbnailBox {
+    position: relative;
+    text-align:center;
+}
+.theSingleLittlePhotoThumbnail {
+    position:absolute;
+}
+.pictureControl {
+    padding: 0;
+    margin: 0;
+}
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,20 @@
+<%- include header %>
+  <div class="container novel">
+    <div id="myCarousel">
+        <div style="margin-top:-100px;">
+            <img src="<%= user.head %>" style="display:inline-block; width:240px; height:240px; box-shadow:0px 1px 4px #888;;"/>
+            <p>
+                <span class="glyphicon glyphicon-user">:<%= user.name %></span>
+            </p>
+            <form method="post" enctype="multipart/form-data" class="form-horizontal">
+            <div class="form-group" style="margin-left:0px;">
+                <label for="file">注：选择头像文件尽量小于2M</label>
+                <input type="file" name="portrait"> 
+            </div>
+                <button type="submit" class="btn-sm btn-primary">上传头像</button>
+            </form>
+        </div>   
+    </div>
+  </div>
+
+<%- include footer %>

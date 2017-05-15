@@ -1,0 +1,84 @@
+body {
+	height: 100%;
+    color: #fff;
+    overflow-y:scroll;
+    overflow-x:hidden;
+    
+}
+
+::-webkit-scrollbar{width:8px;}
+::-webkit-scrollbar-track{background-color:#CB9A9C;}
+::-webkit-scrollbar-thumb{background-color:#607797;}
+::-webkit-scrollbar-thumb:hover {background-color:#CB9A9C}
+::-webkit-scrollbar-thumb:active {background-color:#607797}
+
+@font-face {
+    font-family:"方正启体简体"; 
+    src:'方正启体简体.ttf';
+}
+.header {
+    background-color: rgba(0, 0, 0, 0.2);
+    height: 80px;
+}
+.bck-color {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+.navbar-default .navbar-nav>li>a {
+    color: #e4d1d1;
+}
+/*更改导航栏字体颜色， 以及超链接活动时的颜色*/
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+    color: #a9a3a3;
+}
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+    color: #1A6483;
+    background-color: transparent;
+}
+h1 {
+    text-align: center;
+    text-transform: uppercase;
+    color: #888;
+}
+.novel {
+    position: relative;
+    margin-top: 85px;
+    background-color: rgba(6, 1, 2, 0.4);
+    color: #d9d9d9;
+    padding-bottom:1000px;
+}
+a {
+    color: #D6DBDE;  
+}
+
+.author{
+    margin-top: -10px;
+	font-size: 12px;
+	color: #FF0000
+}
+.dropdown{
+	width:100%;
+	padding:0;
+	position: fixed;
+	top: 5px;
+    margin-left: 10px;
+	opacity:0.9;
+}
+
+.dropbtn{
+	background-color:#bbb;
+	border: solid 1px;
+	color: #222;
+    cursor: pointer;
+    opacity:0.6;
+    box-shadow: 0px 10px 32px 0px rgba(0,0,0,0.40);
+    margin-top: 80px;
+}
+.dropdown-menu{
+	position: absolute;
+	background-color:#bebebe;
+	min-width: 100px;
+	text-decoration:none;
+	list-style-type:none;
+	box-shadow: 0px 10px 32px 0px rgba(0,0,0,0.50);
+}
+

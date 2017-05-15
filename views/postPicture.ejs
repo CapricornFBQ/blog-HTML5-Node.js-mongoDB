@@ -1,0 +1,24 @@
+<div class="postPicture">
+    <div class="container novel" align="center">
+        <div>
+            <img id="pictureView" src="" style="display:inline-block; width:300px; height:300px; box-shadow:0px 1px 4px #888;;"/>
+            <form  method="post" enctype="multipart/form-data" class="form-horizontal">
+                <div class="form-group" style="margin-left:0px;">
+                    <label style="display:inline;" for="file">请选择图片文件:</label>
+                    <input style="display:inline" id="postPictureFile" type="file" name="postPicture"> 
+                    <input id="postPictureSubmit" type="button" class="btn-xs btn-primary" value="上传图片">
+                    <script>
+                        $("#postPictureFile").change(function() {
+                            var reader = new FileReader(); 
+                            reader.onload = function(e) { 
+                                $('#pictureView').prop('src', e.target.result); 
+                            } 
+                            reader.readAsDataURL(this.files[0]);
+                        });
+                    </script>
+                </div>
+            </form>
+        </div>   
+    </div>
+</div>
+

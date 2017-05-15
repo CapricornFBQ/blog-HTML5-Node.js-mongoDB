@@ -1,0 +1,41 @@
+<div class="life">
+    <nav class="novel">
+        <nav class="articleLocation">
+            <%- include components/login {user:user}%>
+            <div style="padding-top:15px;">
+               <%var i = 1%>
+               <% posts.forEach(function (post, life) { %>
+               <!--  对于属性传递变量参数，只能用js来更改-->
+               <!--  var a = document.getElementById("post").href = javascript: `/article?id = ${id}`-->
+                <div class="brief">
+                    <h3><a id="articleTitle<%= i %>" postId="<%= post._id %>" href ="javascript:void(0);"><%= post.title%></a></h3>
+                    <img src="<%= post.head %>" class="pull-left pictureLocation" style="display:inline-block; width:40px; height:40px; box-shadow:0px 1px 4px #888;border-radius:25%"/>
+                    <p class="info">
+                        <span class="glyphicon glyphicon-user">:<%= post.name %></span>
+                        <span>&nbsp;&nbsp;&nbsp;</span>
+                        <span class="glyphicon glyphicon-time">:<%= post.time.minute%></span> 
+                    </p>
+                    <div class="article">
+                        <%- post.post %>
+                    </div>
+                 <!-- <p class="pull-right">评论</p>-->
+                </div>
+                <div class="info" style="margin-top:15px;">
+                    <span class='glyphicon glyphicon-comment'>评论(<%- post.comments.length%>)</span>
+                    <span>&nbsp;</span>
+                    <span class="glyphicon glyphicon-share-alt">阅读(<%- post.pv %>)</span>
+                    <% if(user) { %>
+                        <% if(user.name == post.name) { %>
+                            <a id="removeArticle<%= i %>" postId="id=<%= post._id %>" href="javascript:void(0);" class="glyphicon glyphicon-flash pull-right" style="margin-right:20px;margin-top:2px;">删除</a>
+                        <% } %>
+                    <% } %>
+                    <hr style="height:1px;border:none;border-top:1px dashed #996; width:90%" />
+               </div> 
+               <% i++ %>   
+               <% }) %>
+            </div>
+            <%console.log(total, pagesize, currentpage)%>
+            <%- include components/lifePage {total:total, pagesize:pagesize, currentpage:currentpage}%>
+         </nav>
+    </nav>
+</div>    

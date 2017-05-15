@@ -1,0 +1,22 @@
+<%- include header %>
+<form method="post" id="myCarousel" class="center-block">
+     <div >
+          <span class="lead">标题：</span><br />
+          <input class="input-sm form-control" type="text" name="title" placeholder="标题" required="required" /><br />
+     </div>
+     <div>
+          <span>请选择文章类型：</span>
+          <label>
+              <input type="radio" name="tag" value="coding" checked="checked">编程技术
+          </label>
+          <label>
+              <input type="radio" name="tag" value="life">生活感悟
+          </label>
+     </div>
+     <div >
+         <span class="lead">正文：</span><br />
+         <textarea class="input-xxlarge form-control" rows="10" cols="10" name="post" placeholder="文章内容" required="required"></textarea><br />
+     </div>
+  <input class="btn pull-right" style="color:#444" type="submit" value="发表" />
+</form>
+<%- include footer %>

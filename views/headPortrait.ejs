@@ -1,0 +1,18 @@
+<div class="headPortrait">
+    <div class="container novel">
+        <div class="headPortrait">
+            <img src="<%= user.head %>" style="display:inline-block; width:240px; height:240px; box-shadow:0px 1px 4px #888;;"/>
+            <p>
+                <span class="glyphicon glyphicon-user">:<%= user.name %></span>
+            </p>
+            <form  method="post" enctype="multipart/form-data" class="form-horizontal">
+                <div class="form-group" style="margin-left:0px;">
+                    <label for="file">注：选择头像文件尽量小于2M</label>
+                    <input id="headPortraitFile" type="file" name="portrait"> 
+                </div>
+                <input id="headPortraitSubmit" type="button" class="btn-sm btn-primary" value="上传头像">
+            </form>
+        </div>   
+    </div>
+</div>
+

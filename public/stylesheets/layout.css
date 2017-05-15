@@ -1,0 +1,178 @@
+/*!
+ * IE10 viewport hack for Surface/desktop Windows 8 bug
+ * Copyright 2014-2015 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+
+/*
+ * See the Getting Started docs for more information:
+ * http://getbootstrap.com/getting-started/#support-ie10-width
+ */
+@-ms-viewport     { width: device-width; }
+@-o-viewport      { width: device-width; }
+@viewport         { width: device-width; }
+
+
+body {
+    background-image:url(../images/background_3.jpg);
+    /* 让图片不重覆排列 */  
+    background-repeat:no-repeat;   
+    /* 固定背景图片位置 */  
+    background-attachment:fixed;   
+    overflow-x: hidden;
+}
+.bodyPart {
+    padding: 0 5px;
+}
+#myCarousel{
+    margin: auto;
+    align-content: center;
+    position: fixed
+}
+#navbar-collapse {
+    height: 500px;
+}
+.navbar-brand{
+    float:right;
+}
+/*更改导航栏的默认的字体大小，防止平板的bug*/
+.navbar-brand {
+    font-size: 17px;
+}
+.loginOption {
+    float: right;
+    display: block;
+    box-sizing: border-box;
+}
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+
+.form-signin input[type="text"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+/*  margin-bottom: 10px;*/
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+#regInputPassword {
+/*  margin-bottom: 10px;*/
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+#regInputPasswordAgain {
+/*  margin-top: -10px;*/
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+#regInputEmail {
+/*  margin-top: -10px;*/
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.inputReg .glyphicon {
+    display: none;
+}
+.inputLogin {
+    margin: auto;
+}
+.inputReg {
+    margin-top:30px; 
+}
+.info {
+    font-size: 12px;
+}
+#article:first-letter {
+    color: #FFFF00;
+    font-size: 24px;
+}
+.article {
+    height: 120px;
+    line-height: 24px;
+    font-size: 15px;
+    overflow: hidden;
+/*
+    text-overflow: ellipsis;
+    margin-top: 10px 0; 
+*/
+}
+.articleLocation {
+    padding-left: 50px;
+    padding-right: 15px;
+}
+.pictureLocation {
+    margin-left: -45px;
+}
+/*
+.info {
+    font-size: 12px;
+}
+*/
+#comeBackTop {
+    position:fixed;
+    right: 25px;
+    bottom: 55px;
+    width: 10px;
+    height: 10px;
+    font-size: 20px;
+    display: none;
+}
+#articlePost {
+    resize: none;
+}
+.articleForm {
+    margin:0 40px;
+}
+.headPortrait {
+    margin-top: 10px;
+}
+.postPicture {
+    position: fixed;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,111 @@
+<div class="container photoAlbum">
+<nav class="site-nav loginOption">
+    <% if (user) { %>
+      <span><a id="headPortrait" href="javascript:void(0);"><img src="<%= user.head %>" style="display:inline-block; width:25px; height:25px; box-shadow:0px 1px 3px #999; border-radius:50%;"></a></span>
+      <span><%= user.name %></span>
+      <span><a id="postPicture" title="上传图片" href="javascript:void(0);" class="glyphicon glyphicon-cloud-upload">上传图片</a></span>
+      <span> </span>
+      <span><a id="logout" title="退出" href="javascript:void(0);" class="glyphicon glyphicon-log-out">退出</a></span>
+    <% } else { %>
+      <span><a id="login" title="登录" href="javascript:void(0);" class="glyphicon glyphicon-log-in">登录</a></span>
+      <span>&nbsp;</span>
+      <span><a id="reg" title="注册" href="javascript:void(0);" class="glyphicon glyphicon-user">注册</a></span>
+    <% } %>
+        <% if(success) { %>
+        <div><%= success %></div>
+        <% } %>
+    <% if (error) {%>
+        <div><%= error %> </div>
+        <% } %>
+</nav>
+<script src="./javascripts/photoAlbum.js"></script>
+<link rel="stylesheet" href="./stylesheets/photoAlbumStyle.css">
+    <div id="photoCode">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <%var i = 1%>
+                <% photos.forEach(function (photo, photoAblum) { %>
+                    <div class="photoThumbnailBox col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <img class="photoThumbnail img-rounded image<%= i %>" src="<%= photo.filePath%>">
+                    </div>
+                <% i++ %>
+                <% }) %>
+            </div>
+            <%console.log(total, pagesize, currentpage)%>
+            <%- include components/photoPage {total:total, pagesize:pagesize, currentpage:currentpage}%>
+        </div>
+        <div class="pictureBox col-lg-12 col-md-12 col-sm-12 col-xs-12" currentPageNumber="<%= total - 6*(currentpage - 1)%>" currentpage="<%= currentpage%>" total="<%= total%>">
+            <div class="closeIcon img-circle pull-right">
+                <span class="glyphicon glyphicon-remove-circle" style="color:white; font-size:20px"></span>
+            </div>
+            <div class="pictureViewer">
+                <div class="thePicture text-center">
+                    <img id="thePicture" src="<%= photos[0].filePath%>">
+                </div>
+                <%var i = 1%>
+                <% photos.forEach(function (photo, photoAblum) { %>
+                    <div class="information<%= i %>  informationDisplayNone" style="display:none;">
+                        <p class="text-center" style="color:white;">
+                            <span class="glyphicon glyphicon-tag"><%= photo.title%></span>
+                            <span>&nbsp;</span>
+                            <span class="glyphicon glyphicon-user"><%= photo.name%></span>
+                            <span>&nbsp;</span>
+                            <span class="glyphicon glyphicon-time"><%= photo.time.minute%></span>
+                        </p>
+                    </div>
+                <% i++ %>  
+                <% }) %>
+            </div>
+            <div class="theFooter col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="pictureControl col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-lg-offset-3 col-md-offset-3 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <ul class="pictureToolbar list-unstyled text-center horizontal">
+                            <li style="display:inline;"><a class="pictureToolbarbutton glyphicon glyphicon-plus blowUp"></a>&nbsp;</li>
+                            <li style="display:inline;"><a class="pictureToolbarbutton glyphicon glyphicon-minus shrink"></a>&nbsp;</li>
+                            <li style="display:inline;"><a class="pictureToolbarbutton glyphicon glyphicon-menu-left lastPage"></a>&nbsp;</li>
+                            <li style="display:inline;"><a class="pictureToolbarbutton glyphicon glyphicon-play lantern"></a>&nbsp;</li>
+                            <li style="display:inline;"><a class="pictureToolbarbutton glyphicon glyphicon-menu-right nextPage"></a>&nbsp;</li>
+                            <li style="display:inline;"><a class="pictureToolbarbutton glyphicon glyphicon-th-large artwork"></a>&nbsp;</li>
+                            <li style="display:inline;"><a class="pictureToolbarbutton glyphicon glyphicon-repeat rotate"></a></li>
+                        </ul> 
+                    </div>
+                </div>
+                <div class="theBigPhotoThumbnailBox row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="AdjacentPage col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2 col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="AdjacentPageTool lastPhotoPage glyphicon glyphicon-menu-left" style="font-size:25px"></span></div>
+                    <%var i = 1%>
+                    <% photos.forEach(function (photo, photoAblum) { %>
+                        <div class="theSingleLittlePhotoThumbnailBox col-lg-1 col-md-1 col-sm-1 col-xs-1 img-rounded"><img id="image<%= i %>" class="theSingleLittlePhotoThumbnail" src="<%= photo.filePath%>"></div>
+                        <% i++ %>  
+                    <% }) %>
+                    <div class="AdjacentPage col-lg-1 col-md-1 col-sm-1 col-xs-1"><span class="AdjacentPageTool nextPhotoPage glyphicon glyphicon-menu-right" style="font-size:25px"></span></div> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

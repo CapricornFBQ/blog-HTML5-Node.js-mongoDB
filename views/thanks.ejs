@@ -1,0 +1,149 @@
+<%- include header %>
+ <style>
+    #qq {
+        display: none;
+        position: absolute;
+        cursor:pointer;
+        overflow:hidden;
+    }
+</style>
+
+<img id="qq" src="./images/logopng.png">
+<script>
+    if (!navigator.userAgent.match(/mobile/i)) {
+        //获取图标的初始位置，赋值给动画的图标
+        var defaultX = $(".responsive").offset().left;
+        var defaultY = $(".responsive").offset().top;
+        $("#qq").css({"left":defaultX,"top":defaultY});
+        $("#qq").css({"display":"block"});
+        var screenHeight = $(window).height() - 80;
+        var screenWidth = $(window).width() - 135;
+        var qq = $('#qq');
+        var i = 0;
+        var mouseX; //鼠标位置
+        var mouseY;
+        var beginX; //起始位置
+        var beginY;
+        var stopX;  //终止位置
+        var stopY;
+        var x = defaultX;   //行程
+        var y = defaultY;
+        var vX = 0;  //速度
+        var vY = 1;
+        var time;
+        var first;
+        var second;
+        //在真正的调用事件函数之前先执行一次循环，作为初始的状态；
+        first = setInterval(function() {
+ 
+                i++;
+                vY += 0.0000003 * i * i   //模拟重力加速度 
+                x += vX ;
+                y += vY ;
+                if ( x >= screenWidth) {
+                    vX = -0.93 * vX;
+                    x = screenWidth;
+                }
+                if ( x <= 0) {
+                    vX = -0.93 * vX;
+                }
+                if ( y >= screenHeight) {
+                    vY = -0.98 * vY;
+                    y = screenHeight
+                }
+                if ( y <= 0 ) {
+                    vY = -vY;
+                }
+
+                qq.css({"left": x  + 'px'});
+                qq.css({"top" : y  + 'px'});
+                console.log(i,vX,vY,x,y);
+            },10);
+
+        //随即调用函数
+        drag(qq);
+        function drag(qq) {
+            //绑定点击事件，和对应的触发函数
+            qq.bind("mousedown", start);
+            //定义start功能函数
+            function start(event) {
+                clearInterval(first);
+                clearInterval(second);
+                //取出点击位置相对于对象左上角的坐标
+                deltaX = event.clientX - qq.offset().left;
+                deltaY = event.clientY - qq.offset().top;
+                //绑定事件
+                $(document).bind("mousemove", move);
+                $(document).bind("mouseup", stop);
+                //取出初始位置坐标
+                beginX = event.clientX - deltaX;
+                beginY = event.clientY - deltaY;
+                console.log(beginX,beginY)
+                //开始计时
+                time = setInterval(function() {  //开始计时
+                    i++;
+                },100);
+                return false; //可以去掉很多无用的默认反应
+            }
+        }
+        //定义move功能函数
+        function move(event) {
+             //定义对象的css坐标
+            qq.css({
+                "left":(event.clientX - deltaX) + "px", //此处必须用逗号，我曹坑啊
+                "top" :(event.clientY - deltaY) + "px"
+            })
+
+            return false; //可以去掉很多无用的默认反应
+        }
+        //定义 stop功能函数
+        function stop (event) {
+            //取出鼠标抬起时的坐标
+            stopX = event.clientX - deltaX;
+            stopY = event.clientY - deltaY;
+            //解除事件绑定
+            $(document).unbind("mousemove", move);
+            $(document).unbind("mouseup", stop);
+            //求出qq对象的速度
+            clearInterval(time);
+            stopX = event.clientX;
+            stopY = event.clientY;
+            vX = (stopX - beginX)/i;
+            vY = (stopY - beginY)/i;
+            i = 0;
+            x = stopX, 
+            y = stopY;
+            console.log(x,y,beginX,beginY,stopX,stopY,vX,vY)
+            //通过循环对qq对象的位置和速度进行控制
+            second = setInterval(function() {
+                i++;
+                vY += 0.0000003 * i * i   //模拟重力加速度 
+                x += vX ;
+                y += vY ;
+                if ( x >= screenWidth) {
+                    vX = -0.93 * vX;
+                    x = screenWidth;
+                }
+                if ( x <= 0) {
+                    vX = -0.93 * vX;
+                }
+                if ( y >= screenHeight) {
+                    vY = -0.98 * vY;
+                    y = screenHeight
+                }
+                if ( y <= 0 ) {
+                    vY = -vY;
+                }
+
+                qq.css({"left": x  + 'px'});
+                qq.css({"top" : y  + 'px'});
+                console.log(i);
+            },10);
+        }
+    }
+</script>
+
+
+
+
+<%- include footer %>

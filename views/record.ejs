@@ -1,0 +1,230 @@
+<%- include header %>
+
+       
+		<!--
+			1.画可见的格子
+				横向30格子 竖着30格子 每个格子边长15 450*450
+				第一行绘制一条蛇 5节身体
+				食物放置在最中心的位置 默认食物
+			2.让蛇东起来
+				蛇头动跟着键盘方向键  上下左右移动 键盘监听事件
+				蛇身跟着蛇头动
+					算法：
+						1.产生新的蛇头
+						2.新的蛇身 （不要蛇尾
+						3.新的蛇头添加到舍身
+			3.吃食物
+				1.碰撞算法
+				2.增加蛇的长度，添加蛇尾
+				3.将食物移除，产生新的随机食物
+			4.蛇自己动
+			5.计算分数
+
+		-->
+		<div style="position:fixed; margin-top:-65px">
+		    <div style="margin-top:150px">
+                <p align="center" style="font-size:15px;">贪吃蛇得分：<span id="score"></span></p>
+            </div>
+
+            <div style="margin:0 auto; padding:0; width:300px;height:300px;border:1px solid red">
+                <canvas id="gameBox" width="300px" height="300px"></canvas>
+            </div>
+            <div style="margin-top:15px; margin-left:0;">
+                <button type="button" onclick=Begin();><span style="color:#111">开始游戏</span></button>
+            </div>
+            <div style="position:fixed;width:50px; height:50px; margin-top:-35px; margin-left:120px;">
+                <div style="margin-top:25px"><a class="glyphicon glyphicon-arrow-left" style="font-size:25px;" onclick=moveSnake(1)></a></div>
+                <div style="margin-top:-52px; margin-left:25px"><a class="glyphicon glyphicon-arrow-up" style="font-size:25px;" onclick=moveSnake(2)></a></div>
+                <div style="margin-left:50px; margin-top:-7px"><a class="glyphicon glyphicon-arrow-right" style="font-size:25px;" onclick=moveSnake(-1)></a></div>
+                <div style="margin-left:25px;"><a class="glyphicon glyphicon-arrow-down" style="font-size:25px;" onclick=moveSnake(-2)></a></div>
+            </div>
+		</div>
+		
+		<script type="text/javascript">
+			
+            var canvas = document.getElementById("gameBox");
+            var ctx = canvas.getContext("2d");
+            
+            var snake = [];
+            var width = 15;
+            var len = 5;
+            var food;
+            var scores = 0;
+            document.getElementById("score").innerHTML = scores;
+            var clickCount = 0;  //用于对点击次数进行计数；以控制游戏的开始
+            var v = 420; //贪吃蛇的速度
+            v -= 3*snake.length
+            
+            //左1 右-1 上2 下-2
+            function cell(x, y, f) {
+                this.x = x;
+                this.y = y;
+                this.f = f;
+                return this;
+            }
+            
+            function Food(x, y) {
+                this.x = x;
+                this.y = y;
+                return this;
+            }
+            
+            
+            //初始化蛇
+            for (var i=0; i<len; i++) {
+                snake[i] = new cell(i, 0, -1);
+            }
+            //初始化食物
+            food = new Food(10, 10);
+            
+            //重新绘制蛇的身体
+            function draw() {
+                //重绘
+                ctx.clearRect(0,0,300,300) 
+
+                var head = snake[snake.length-1];
+                //蛇头和食物重合
+                if(head.x == food.x && head.y ==food.y) {
+                    scores++;
+                    //显示分数
+                    document.getElementById("score").innerHTML = scores;
+                    randFood();
+                    var newHead = new cell(head.x, head.y, head.f)
+                    switch(head.f) {
+                            case 1: newHead.x--; break; //左
+                            case 2: newHead.y--; break; //上
+                            case -1: newHead.x++; break;//右
+                            case -2: newHead.y++; break;//下
+                    }
+                    snake[snake.length] = newHead;
+                }
+
+
+                //绘制蛇的身体
+                for (var i=0; i<snake.length; i++) {
+                    ctx.fillStyle = "black";
+                    if(i == snake.length - 1){
+                        ctx.fillStyle = "red";
+                    }
+                    ctx.beginPath();
+                    ctx.rect(snake[i].x*15, snake[i].y*15, width, width);
+                    ctx.closePath();
+                    ctx.fill();
+                    ctx.stroke();
+                }
+                ctx.fillStyle = "green";
+                ctx.beginPath();
+                ctx.rect(food.x*15, food.y*15, width, width);
+                ctx.closePath();
+                ctx.fill();
+                ctx.stroke();
+            }
+           //随机食物
+            function randFood() {
+                var foodX = Math.ceil(Math.random() * 19);
+                var foodY = Math.ceil(Math.random() * 19);
+                //防止食物与蛇身重合
+                for (var i=0; i<snake.length; i++) {
+                    if(foodX == snake[i].x && foodY == snake[i].y) {
+                        randFood();
+                    }else {
+                        food = new Food(foodX, foodY);
+                    }
+                }
+            }
+
+
+
+
+            //横线
+            ctx.strokeStyle = "red";
+            for (var i=1; i<20; i++) {
+                ctx.beginPath();
+                ctx.moveTo(0,i*15);
+                ctx.lineTo(300,i*15);
+                ctx.closePath();
+                ctx.stroke();         
+            }
+            //竖线
+            for (var i=1; i<20; i++) {
+                ctx.beginPath();
+                ctx.moveTo(i*15,0);
+                ctx.lineTo(i*15,300);
+                ctx.closePath();
+                ctx.stroke();         
+            }
+
+            //让蛇头移动
+            document.onkeydown = function(event) {
+                var code = event.keyCode;
+                var f;
+                switch (code) {
+                    case 37: f = 1; break; //左
+                    case 38: f = 2; break;//上
+                    case 39: f = -1; break; //右
+                    case 40: f = -2; break;//下
+                }
+                var head = snake[snake.length-1];
+                if(code >= 37 && code <= 40 && parseInt(head.f) + f != 0) {
+                    moveSnake(f);
+                } 
+            }
+
+            //移动
+            function moveSnake(f) {
+                var newSnake = [];
+
+                var snakeHeader = snake[snake.length-1];
+                var newHead = new cell(snakeHeader.x, snakeHeader.y, snakeHeader.f);
+                newHead.f = f;
+                switch(f) {
+                    case 1: newHead.x--; break; //左
+                    case 2: newHead.y--; break; //上
+                    case -1: newHead.x++; break;   //右
+                    case -2: newHead.y++; break;  //下
+                }
+                //将蛇的尾部去除，赋值给新的对象
+                for(var i = 1; i<snake.length; i++) {
+                    newSnake[i-1] = snake[i];
+                }
+                newSnake[newSnake.length] = newHead;
+                snake = newSnake;
+                checkDeath();
+                draw();
+            }
+//            draw();
+
+            function checkDeath() {
+                var head = snake[snake.length-1];
+                if(head.x >= 20 || head.y >= 20 || head.x < 0 || head.y < 0) {
+                    alert('不要撞墙；游戏结束!')
+                    window.location.reload();
+                }
+                for(var i=0; i<snake.length-1; i++) {
+                    var cell = snake[i];
+                    if(head.x == cell.x && head.y == cell.y) {
+                        alert("不要咬自己；游戏结束!");
+                        window.location.reload();
+                    }
+                }   
+            }
+            //用于控制开始的按钮只起一次作用！！！！
+            function Begin() {
+                clickCount ++ ;
+                if (clickCount == 1) {
+                    moveClock();
+                }
+            }
+            
+            function moveClock() {
+                //放在函数里面把head封装起来
+                var head = snake[snake.length-1];
+                moveSnake(head.f);
+                draw();
+                setTimeout('moveClock()', 400);
+            }
+            
+		</script>
+		
+
+<%- include footer %>

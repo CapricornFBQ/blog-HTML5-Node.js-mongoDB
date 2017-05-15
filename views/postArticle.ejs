@@ -1,0 +1,23 @@
+<div class="articlePost">
+    <form method="post" class="center-block articleForm">
+        <div >
+            <span class="lead">标题：</span><br />
+            <input id="articleTitle" class="input-sm form-control" type="text" name="title" placeholder="标题" required="required" /><br />
+        </div>
+        <div>
+            <span>请选择文章类型：</span>
+            <label>
+                <input type="radio" name="tag" value="coding" checked="checked">编程技术
+            </label>
+            <label>
+                <input type="radio" name="tag" value="life">生活感悟
+            </label>
+        </div>
+        <div >
+            <span class="lead">正文：</span><br />
+            <textarea id="articlePost" class="input-large form-control" rows="5" cols="5" name="post" placeholder="文章内容" required="required"></textarea><br />
+        </div>
+        <button id="articleSubmit" class="btn pull-right" style="color:#222" type="button">发表</button>
+    </form>
+</div>
+
