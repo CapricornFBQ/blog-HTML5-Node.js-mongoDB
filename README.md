@@ -1,6 +1,8 @@
 # blog-HTML5-Node.js-mongoDB
 >一个使用了HTM5、Node.js、mongoDB数据的**单页面博客应用**
+>
 >实现以下功能：
+>
 >①登陆注册个人账户
 >
 >②登陆用户可发表文章（类似于网路论坛）
